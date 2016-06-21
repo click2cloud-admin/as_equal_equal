@@ -1,13 +1,8 @@
 
-require 'active_support'
 
+puts
 puts "RUBY_VERSION: #{RUBY_VERSION.inspect}"
 
-
-## active_support without core_ext
-
-t = Time.now
-t == nil # does it fail?
 
 class MyClass
   def initialize(sa=Time.now)
@@ -21,8 +16,52 @@ class MyClass
   end
 end
 
+
+## active_support without core_ext
+
+puts 'requiring active_support ...'
+
+require 'active_support'
+
+t = Time.now
+t == nil # does it fail?
+
 MyClass.new.test0
 MyClass.new.test1
 MyClass.new(nil).test0
 MyClass.new(nil).test1 rescue nil
+
+
+## core_ext/time/calculations.rb
+
+puts 'requiring active_support/core_ext/time/calculations.rb ...'
+
+require 'active_support/core_ext/time/calculations.rb'
+
+t == nil # does it fail?
+
+MyClass.new.test0
+MyClass.new.test1
+MyClass.new(nil).test0
+MyClass.new(nil).test1 rescue nil
+
+
+## core_ext/date_time/calculations.rb
+
+puts 'requiring active_support/core_ext/date_time/calculations.rb ...'
+
+require 'active_support/core_ext/date_time/calculations.rb'
+
+t == nil # does it fail?
+
+MyClass.new.test0
+MyClass.new.test1
+MyClass.new(nil).test0
+MyClass.new(nil).test1 rescue nil
+
+
+## over
+
+puts "no problem."
+puts
 
